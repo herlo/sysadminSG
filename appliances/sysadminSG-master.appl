@@ -1,0 +1,29 @@
+name: f14-sysadminSG-master
+summary: System Administration Study Group Master Server
+default_repos: false
+os:
+  name: fedora
+  version: 14
+hardware:
+  partitions:
+    "/":
+      size: 10
+packages:
+    - @core
+    - vim-enhanced
+    - tgt-utils
+    - openldap
+    - krb5-server
+    - createrepo
+
+repos:
+    - name: "fedora-14"
+        baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/releases/14/Fedora/x86_64/os/"
+    - name: "fedora-14-updates"
+        baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/updates/14/x86_64/"
+post:
+  base:
+    - "groupadd -g615 mesabe"
+    - "useradd -u608 mesabe"
+    - "/usr/bin/mysql_secure_installation"
+    - "gem install bundler"
