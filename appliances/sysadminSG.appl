@@ -10,7 +10,6 @@ hardware:
       size: 3
 packages:
     - @core
-    - @core
     - vim-enhanced
 
 repos:

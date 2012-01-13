@@ -9,15 +9,24 @@ hardware:
     "/":
       size: 10
 packages:
-    - @core
-    - vim-enhanced
-    - scsi-target-utils
-    - openldap-servers
-    - krb5-server
-    - createrepo
-    - rsync
+  - @core
+  - vim-enhanced
+  - scsi-target-utils
+  - openldap-servers
+  - krb5-server
+  - createrepo
+  - rsync
 repos:
-    - name: "fedora-14"
-      baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/releases/14/Fedora/x86_64/os/"
-    - name: "fedora-14-updates"
-      baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/updates/14/x86_64/"
+  - name: "fedora-14"
+    baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/releases/14/Everything/x86_64/os/"
+  - name: "fedora-14-updates"
+    baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/updates/14/x86_64/"
+files:
+  "/tmp":
+    - "sysadminSG-master/file.txt"
+
+post:
+  base:
+    - "echo 'sysadminSG Master' >> /etc/issue"
+    - "rm /etc/yum.repos.d/fedora.repo"
+    - "rm /etc/yum.repos.d/fedora-updates.repo"
