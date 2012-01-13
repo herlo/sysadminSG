@@ -2,3 +2,4 @@ build/
 log/
 fedora-14/
 fedora-14-updates/
+.*sw[op]

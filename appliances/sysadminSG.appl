@@ -1,5 +1,5 @@
-name: f14-basic
-summary: Just Enough Operating System based on Fedora 14
+name: sysadminSG
+summary: System Administration Study Group Image running Fedora 14
 default_repos: false
 os:
   name: fedora
@@ -7,11 +7,14 @@ os:
 hardware:
   partitions:
     "/":
-      size: 10
+      size: 3
 packages:
-  - @core
+    - @core
+    - @core
+    - vim-enhanced
+
 repos:
-  - name: "fedora-14"
-    baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/releases/14/Fedora/x86_64/os/"
-  - name: "fedora-14-updates"
-    baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/updates/14/x86_64/"
+    - name: "fedora-14"
+      baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/releases/14/Fedora/x86_64/os/"
+    - name: "fedora-14-updates"
+      baseurl: "http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/updates/14/x86_64/"
