@@ -24,9 +24,11 @@ repos:
 files:
   "/tmp":
     - "sysadminSG-master/file.txt"
+    - "sysadminSG-master/setup-iscsi.sh"
 
 post:
   base:
     - "echo 'sysadminSG Master' >> /etc/issue"
     - "rm /etc/yum.repos.d/fedora.repo"
     - "rm /etc/yum.repos.d/fedora-updates.repo"
+    - "bash /tmp/sysadminSG-master/setup-iscsi.sh"
