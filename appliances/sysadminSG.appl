@@ -11,6 +11,10 @@ hardware:
 packages:
     - @core
     - vim-enhanced
+    - nano
+    - emacs
+    - joe
+    - @base
 
 repos:
     - name: "fedora-14"
