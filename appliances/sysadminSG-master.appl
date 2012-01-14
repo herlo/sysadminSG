@@ -27,6 +27,7 @@ files:
   "/tmp":
     - "sysadminSG-master/file.txt"
     - "sysadminSG-master/setup-iscsi.sh"
+    - "sysadminSG-master/ldap-data.ldif"
 
 post:
   base:
@@ -34,3 +35,8 @@ post:
     - "rm /etc/yum.repos.d/fedora.repo"
     - "rm /etc/yum.repos.d/fedora-updates.repo"
     - "bash /tmp/sysadminSG-master/setup-iscsi.sh"
+    - "rm /var/lib/ldap/*"
+    - "touch /var/lib/ldap/DB_CONFIG"
+    - "sed -i.bak -e 's/my-domain/sysadminsg/g' -e 's/dc=com/dc=org/g' /etc/openldap/slapd.d/cn\=config/*ldif"
+    - "slapadd -l ldap-data.ldif"
+    - "chown -R ldap: /var/lib/ldap"
