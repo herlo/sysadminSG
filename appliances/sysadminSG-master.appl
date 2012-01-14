@@ -24,6 +24,7 @@ repos:
 files:
   "/tmp":
     - "sysadminSG-master/file.txt"
+    - "sysadminSG-master/ldap-data.ldif"
 
 post:
   base:
