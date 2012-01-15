@@ -1,28 +1,19 @@
 name: sysadminSG-master
 summary: System Administration Study Group Master Server
 version: 1
-release: 2
-default_repos: false
-os:
-  name: fedora
-  version: 14
+release: 3
+appliances:
+  - sysadminSG-common
 hardware:
   partitions:
     "/":
       size: 10
 packages:
-  - @base
-  - vim-enhanced
   - scsi-target-utils
   - openldap-servers
   - krb5-server
   - createrepo
   - rsync
-repos:
-  - name: "fedora-14"
-    baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/releases/14/Everything/x86_64/os/"
-  - name: "fedora-14-updates"
-    baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/updates/14/x86_64/"
 files:
   "/tmp":
     - "sysadminSG-master/file.txt"
@@ -31,11 +22,10 @@ files:
 post:
   base:
     - "echo 'sysadminSG Master' >> /etc/issue"
-    - "rm /etc/yum.repos.d/fedora.repo"
-    - "rm /etc/yum.repos.d/fedora-updates.repo"
     - "bash /tmp/sysadminSG-master/setup-iscsi.sh"
     - "[ -n '$(ls -A /var/lib/ldap/)' ] && rm -rf /var/lib/ldap/*"
     - "touch /var/lib/ldap/DB_CONFIG"
     - "sed -i.bak -e 's/my-domain/sysadminsg/g' -e 's/dc=com/dc=org/g' /etc/openldap/slapd.d/cn\=config/*ldif"
     - "slapadd -l /tmp/sysadminSG-master/ldap-data.ldif"
     - "chown -R ldap. /var/lib/ldap"
+    - "chkconfig slapd --level 35 on "
