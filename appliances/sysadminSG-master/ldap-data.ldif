@@ -25,6 +25,7 @@ objectClass: top
 objectClass: organizationalUnit
 objectClass: domainRelatedObject
 associatedDomain: sysadminsg.org
+
 dn: cn=remoteuser1,ou=Group,dc=sysadminsg,dc=org
 objectClass: posixGroup
 objectClass: top
