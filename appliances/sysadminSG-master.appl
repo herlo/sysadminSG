@@ -1,7 +1,7 @@
 name: sysadminSG-master
 summary: System Administration Study Group Master Server
 version: 1
-release: 1
+release: 2
 default_repos: false
 os:
   name: fedora
@@ -11,7 +11,7 @@ hardware:
     "/":
       size: 10
 packages:
-  - @core
+  - @base
   - vim-enhanced
   - scsi-target-utils
   - openldap-servers
@@ -28,15 +28,14 @@ files:
     - "sysadminSG-master/file.txt"
     - "sysadminSG-master/setup-iscsi.sh"
     - "sysadminSG-master/ldap-data.ldif"
-
 post:
   base:
     - "echo 'sysadminSG Master' >> /etc/issue"
     - "rm /etc/yum.repos.d/fedora.repo"
     - "rm /etc/yum.repos.d/fedora-updates.repo"
     - "bash /tmp/sysadminSG-master/setup-iscsi.sh"
-    - "rm /var/lib/ldap/*"
+    - "[ -n '$(ls -A /var/lib/ldap/)' ] && rm -rf /var/lib/ldap/*"
     - "touch /var/lib/ldap/DB_CONFIG"
     - "sed -i.bak -e 's/my-domain/sysadminsg/g' -e 's/dc=com/dc=org/g' /etc/openldap/slapd.d/cn\=config/*ldif"
-    - "slapadd -l ldap-data.ldif"
-    - "chown -R ldap: /var/lib/ldap"
+    - "slapadd -l /tmp/sysadminSG-master/ldap-data.ldif"
+    - "chown -R ldap. /var/lib/ldap"

@@ -1,6 +1,8 @@
 name: sysadminSG
 summary: System Administration Study Group Image running Fedora 14
 default_repos: false
+version: 1
+release: 1
 os:
   name: fedora
   version: 14
@@ -9,12 +11,11 @@ hardware:
     "/":
       size: 3
 packages:
-    - @core
+    - @base
     - vim-enhanced
     - nano
     - emacs
     - joe
-    - @base
 
 repos:
     - name: "fedora-14"
