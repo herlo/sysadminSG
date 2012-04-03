@@ -1,13 +1,16 @@
 name: sysadminSG
-summary: System Administration Study Group Image running Fedora 14
+summary: System Administration Study Group Image running GoOSe Linux 6.0
 version: 1
-release: 2
+release: 1
 appliances:
   - sysadminSG-common
 hardware:
   partitions:
     "/":
       size: 3
+repos:
+    - name: "goose-6"
+      baseurl: "http://koji.gooselinux.org/releases/sketchy/6/Everything/x86_64/os/"
 post:
   base:
     - "echo 'sysadminSG Workstation' >> /etc/issue"

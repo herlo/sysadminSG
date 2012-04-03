@@ -14,6 +14,11 @@ packages:
   - krb5-server
   - createrepo
   - rsync
+repos:
+    - name: "fedora-14"
+      baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/releases/14/Everything/x86_64/os/"
+    - name: "fedora-14-updates"
+      baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/updates/14/x86_64/"
 files:
   "/tmp":
     - "sysadminSG-master/file.txt"

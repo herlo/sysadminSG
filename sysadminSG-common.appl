@@ -2,8 +2,8 @@ name: sysadminSG-common
 summary: System Administration Study Group Common components
 default_repos: false
 os:
-  name: fedora
-  version: 14
+  name: goose
+  version: 6
 hardware:
   memory: 512
   partitions:
@@ -19,12 +19,3 @@ packages:
     - PackageKit-gtk-module
     - libcanberra-gtk2
     - xorg-x11-fonts-Type1
-repos:
-    - name: "fedora-14"
-      baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/releases/14/Everything/x86_64/os/"
-    - name: "fedora-14-updates"
-      baseurl: "http://mirror.cc.vt.edu/pub/fedora/linux/updates/14/x86_64/"
-post:
-  base:
-    - "rm /etc/yum.repos.d/fedora.repo"
-    - "rm /etc/yum.repos.d/fedora-updates.repo"
