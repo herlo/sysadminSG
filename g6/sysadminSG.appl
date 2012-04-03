@@ -1,0 +1,13 @@
+name: sysadminSG
+summary: System Administration Study Group Image running Fedora 14
+version: 1
+release: 2
+appliances:
+  - sysadminSG-common
+hardware:
+  partitions:
+    "/":
+      size: 3
+post:
+  base:
+    - "echo 'sysadminSG Workstation' >> /etc/issue"

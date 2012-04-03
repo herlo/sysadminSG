@@ -1,0 +1,31 @@
+name: sysadminSG-master
+summary: System Administration Study Group Master Server
+version: 1
+release: 3
+appliances:
+  - sysadminSG-common
+hardware:
+  partitions:
+    "/":
+      size: 10
+packages:
+  - scsi-target-utils
+  - openldap-servers
+  - krb5-server
+  - createrepo
+  - rsync
+files:
+  "/tmp":
+    - "sysadminSG-master/file.txt"
+    - "sysadminSG-master/setup-iscsi.sh"
+    - "sysadminSG-master/ldap-data.ldif"
+post:
+  base:
+    - "echo 'sysadminSG Master' >> /etc/issue"
+    - "bash /tmp/sysadminSG-master/setup-iscsi.sh"
+    - "[ -n '$(ls -A /var/lib/ldap/)' ] && rm -rf /var/lib/ldap/*"
+    - "touch /var/lib/ldap/DB_CONFIG"
+    - "sed -i.bak -e 's/my-domain/sysadminsg/g' -e 's/dc=com/dc=org/g' /etc/openldap/slapd.d/cn\=config/*ldif"
+    - "slapadd -l /tmp/sysadminSG-master/ldap-data.ldif"
+    - "chown -R ldap. /var/lib/ldap"
+    - "chkconfig slapd --level 35 on "
